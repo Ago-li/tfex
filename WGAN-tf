@@ -94,7 +94,7 @@ clip_D = [p.assign(tf.clip_by_value(p, -0.01, 0.01)) for p in theta_D]
 D_loss = tf.reduce_mean(D_real) - tf.reduce_mean(D_fake)
 G_loss = -tf.reduce_mean(D_fake)
 
-#定义判别器和生成器的优化方法为Adam算法，关键字var_list表明最小化损失函数所更新的权重矩阵
+#定义判别器和生成器的优化方法为RMSProp算法，关键字var_list表明最小化损失函数所更新的权重矩阵
 D_solver = tf.train.RMSPropOptimizer(5e-5).minimize(-D_loss, var_list=theta_D)
 G_solver = tf.train.RMSPropOptimizer(5e-5).minimize(G_loss, var_list=theta_G)
 
